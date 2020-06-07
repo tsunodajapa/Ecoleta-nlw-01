@@ -1,9 +1,9 @@
 # NLW-01
 Projeto construído durante o Next Level Week
 
-![](template.png)
+![](template.PNG)
 
-### Foram utilizados as seguintes tecnologias:
+## Foram utilizados as seguintes tecnologias:
 
 * Node JS
   * Knex
