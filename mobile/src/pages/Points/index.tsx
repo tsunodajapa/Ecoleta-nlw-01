@@ -160,7 +160,6 @@ const Ponits = () => {
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={{ paddingHorizontal: 20 }}
                 >
-
                     {items.map(item => (
                         <TouchableOpacity
                             key={String(item.id)}

@@ -13,7 +13,7 @@ interface Params {
 }
 
 interface Data {
-    point: {
+    serializedItemsPoint: {
         city: string,
         uf: string,
         email: string,
@@ -38,7 +38,11 @@ const Detail = () => {
     const [data, setData] = useState<Data>({} as Data);
 
     useEffect(() => {
-        api.get(`points/${routeParams.point_id}`).then(response => setData(response.data))
+        api.get(`points/${routeParams.point_id}`).then(response => {
+            setData(response.data);
+            response.data
+            console.log(data);
+        })
     }, []);
 
     function handleNavigationBack() {
@@ -48,15 +52,15 @@ const Detail = () => {
     function handleComposerMail() {
         MailComposer.composeAsync({
             subject: "Interesse na coleta de resíduos",
-            recipients: [data.point.email]
+            recipients: [data.serializedItemsPoint.email]
         })
     }
 
     function handleWhatsapp() {
-        Linking.openURL(`whatsapp://send?phone=55${data.point.whatsapp}&text=Tenho interesse`);
+        Linking.openURL(`whatsapp://send?phone=55${data.serializedItemsPoint.whatsapp}&text=Tenho interesse`);
     }
 
-    if (!data.point) {
+    if (!data.serializedItemsPoint) {
         return null;
     }
 
@@ -67,10 +71,10 @@ const Detail = () => {
                     <Icon name="arrow-left" size={20} color="#34cb79" />
                 </TouchableOpacity>
 
-                <Image style={styles.pointImage} source={{ uri: data.point.image_url }} />
+                <Image style={styles.pointImage} source={{ uri: data.serializedItemsPoint.image_url }} />
 
                 <Text style={styles.pointName}>
-                    {data.point.name}
+                    {data.serializedItemsPoint.name}
                 </Text>
 
                 <Text style={styles.pointItems}>
@@ -82,7 +86,7 @@ const Detail = () => {
                         Endereço
                 </Text>
                     <Text style={styles.addressContent}>
-                        {`${data.point.city}, ${data.point.uf}`}
+                        {`${data.serializedItemsPoint.city}, ${data.serializedItemsPoint.uf}`}
                     </Text>
                 </View>
             </View>

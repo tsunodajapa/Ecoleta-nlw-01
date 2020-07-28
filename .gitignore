@@ -1,4 +1,5 @@
-
+node_modules/
+/(?:(?=.)bar\/)/i
 mobile/.expo/packager-info.json
 mobile/.expo-shared/assets.json
 mobile/.expo-shared/assets.json
